@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { agents, properties as allProperties, testimonials } from "@/lib/data";
@@ -14,6 +14,14 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 import { TestimonialCard } from "@/components/testimonials/testimonial-card";
 import { ContactForm } from "@/components/contact/contact-form";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   const [filters, setFilters] = useState({
@@ -49,6 +57,31 @@ export default function HomePage() {
   
   const heroImage = PlaceHolderImages.find(img => img.id === 'property-1-1');
   const aboutImage = PlaceHolderImages.find(img => img.id === 'property-4-1');
+
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) {
+      return;
+    }
+
+    setCurrent(carouselApi.selectedScrollSnap());
+
+    const onSelect = () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    };
+
+    carouselApi.on("select", onSelect);
+
+    return () => {
+      carouselApi.off("select", onSelect);
+    };
+  }, [carouselApi]);
 
   return (
     <div className="space-y-24">
@@ -157,16 +190,45 @@ export default function HomePage() {
       <Separator />
 
       {/* Testimonials Section */}
-      <section>
+      <section className="overflow-x-hidden">
         <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline text-primary">What Our Clients Say</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Real stories from satisfied homeowners who found their dream properties with us.</p>
+          <h2 className="text-4xl font-headline text-primary">
+            What Our Clients Say
+          </h2>
+          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+            Real stories from satisfied homeowners who found their dream
+            properties with us.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+        <Carousel
+          setApi={setCarouselApi}
+          plugins={[autoplayPlugin.current]}
+          opts={{
+            loop: true,
+            align: "center",
+          }}
+          className="w-full max-w-6xl mx-auto"
+        >
+          <CarouselContent className="-ml-4">
+            {testimonials.map((testimonial, index) => (
+              <CarouselItem
+                key={testimonial.id}
+                className={cn(
+                  "pl-4 md:basis-1/2 lg:basis-1/3 transition-all duration-500 ease-in-out"
+                )}
+              >
+                <div
+                  className={cn("h-full transition-transform duration-500", {
+                    "scale-105": index === current,
+                    "scale-90 opacity-70": index !== current,
+                  })}
+                >
+                  <TestimonialCard testimonial={testimonial} />
+                </div>
+              </CarouselItem>
             ))}
-        </div>
+          </CarouselContent>
+        </Carousel>
       </section>
 
       <Separator />
