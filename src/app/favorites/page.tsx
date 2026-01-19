@@ -37,7 +37,6 @@ export default function FavoritesPage() {
             <PropertyCard
               key={property.id}
               property={property}
-              isFavorited={true}
             />
           ))}
         </div>

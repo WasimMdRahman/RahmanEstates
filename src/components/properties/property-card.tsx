@@ -14,16 +14,12 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FavoriteButton } from "@/components/shared/favorite-button";
-import { useFavorites } from "@/hooks/use-favorites";
 
 type PropertyCardProps = {
   property: Property;
-  isFavorited: boolean;
 };
 
-export function PropertyCard({ property, isFavorited }: PropertyCardProps) {
-  const { toggleFavorite } = useFavorites();
-
+export function PropertyCard({ property }: PropertyCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <Link href={`/${property.id}`} prefetch={false}>
@@ -43,10 +39,7 @@ export function PropertyCard({ property, isFavorited }: PropertyCardProps) {
             {property.propertyType}
           </Badge>
           <div className="absolute top-1 right-1">
-            <FavoriteButton
-              isFavorited={isFavorited}
-              onClick={() => toggleFavorite(property.id)}
-            />
+            <FavoriteButton propertyId={property.id} />
           </div>
         </div>
       </Link>

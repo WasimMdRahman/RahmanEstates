@@ -7,7 +7,6 @@ import { Mail, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { PropertyCard } from "@/components/properties/property-card";
-import { useFavorites } from "@/hooks/use-favorites";
 
 export default function AgentProfilePage({
   params,
@@ -18,8 +17,6 @@ export default function AgentProfilePage({
   if (!agent) {
     notFound();
   }
-  
-  const { favorites } = useFavorites();
 
   const agentProperties = properties.filter((p) => p.agentId === agent.id);
 
@@ -65,7 +62,6 @@ export default function AgentProfilePage({
             <PropertyCard
               key={property.id}
               property={property}
-              isFavorited={favorites.includes(property.id)}
             />
           ))}
         </div>

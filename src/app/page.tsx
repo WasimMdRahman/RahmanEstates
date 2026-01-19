@@ -7,7 +7,6 @@ import { agents, properties as allProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertyFilters } from "@/components/properties/property-filters";
-import { useFavorites } from "@/hooks/use-favorites";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { AgentCard } from "@/components/agents/agent-card";
@@ -22,8 +21,6 @@ export default function HomePage() {
     maxPrice: 5000000,
     bedrooms: "all",
   });
-  
-  const { favorites } = useFavorites();
 
   const filteredProperties = useMemo(() => {
     return allProperties.filter((property: Property) => {
@@ -123,7 +120,6 @@ export default function HomePage() {
                   <PropertyCard
                     key={property.id}
                     property={property}
-                    isFavorited={favorites.includes(property.id)}
                   />
                 ))}
               </div>

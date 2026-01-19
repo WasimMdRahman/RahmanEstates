@@ -3,14 +3,33 @@
 import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useFavorites } from "@/hooks/use-favorites";
 
 type FavoriteButtonProps = {
-  isFavorited: boolean;
-  onClick: () => void;
+  propertyId: string;
   className?: string;
 };
 
-export function FavoriteButton({ isFavorited, onClick, className }: FavoriteButtonProps) {
+export function FavoriteButton({ propertyId, className }: FavoriteButtonProps) {
+  const { favorites, toggleFavorite, isInitialized } = useFavorites();
+
+  if (!isInitialized) {
+    // Return a disabled, non-interactive placeholder to prevent hydration mismatch.
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        disabled
+        className={cn("rounded-full", className)}
+        aria-label="Loading favorites"
+      >
+        <Heart className="h-5 w-5 text-gray-300 dark:text-gray-600" />
+      </Button>
+    );
+  }
+
+  const isFavorited = favorites.includes(propertyId);
+
   return (
     <Button
       variant="ghost"
@@ -19,7 +38,7 @@ export function FavoriteButton({ isFavorited, onClick, className }: FavoriteButt
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        onClick();
+        toggleFavorite(propertyId);
       }}
       aria-label={isFavorited ? "Remove from favorites" : "Add to favorites"}
     >
