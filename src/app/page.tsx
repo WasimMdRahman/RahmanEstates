@@ -60,7 +60,7 @@ export default function HomePage() {
   const aboutImage = PlaceHolderImages.find(img => img.id === 'property-4-1');
 
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
