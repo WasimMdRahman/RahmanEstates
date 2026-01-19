@@ -158,52 +158,52 @@ export default function HomePage() {
       </section>
       
       {/* Properties Section */}
-      <section id="properties" className="scroll-mt-20 w-full bg-background text-foreground">
+      <section id="properties" className="scroll-mt-20">
         <div className="container mx-auto px-4 py-12 md:py-24">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <aside className="lg:col-span-1">
-                <div className="sticky top-24">
-                <h2 className="text-3xl font-headline mb-4">Filter Properties</h2>
-                <PropertyFilters filters={filters} setFilters={setFilters} />
-                </div>
-            </aside>
-            <main className="lg:col-span-3">
-                <h2 className="text-4xl font-headline mb-6">Our Properties</h2>
-                {filteredProperties.length > 0 ? (
-                  <Carousel
-                    setApi={setPropertyCarouselApi}
-                    opts={{
-                      loop: true,
-                      align: "center",
-                    }}
-                    className="w-full"
-                  >
-                    <CarouselContent className="-ml-4">
-                      {filteredProperties.map((property, index) => (
-                        <CarouselItem
-                          key={property.id}
+          <div>
+            <h2 className="text-3xl font-headline mb-4 text-center">Filter Properties</h2>
+            <PropertyFilters filters={filters} setFilters={setFilters} />
+          </div>
+          <div className="mt-12">
+              <h2 className="text-4xl font-headline mb-6 text-center">Our Properties</h2>
+              {filteredProperties.length > 0 ? (
+                <Carousel
+                  setApi={setPropertyCarouselApi}
+                  opts={{
+                    loop: true,
+                    align: 'start',
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-4">
+                    {filteredProperties.map((property, index) => (
+                      <CarouselItem
+                        key={property.id}
+                        className={cn('pl-4 md:basis-1/2 lg:basis-1/3')}
+                      >
+                        <div
                           className={cn(
-                            "pl-4 md:basis-1/2 lg:basis-1/3"
+                            'h-full transition-transform duration-500',
+                            {
+                              'scale-95': index === propertyCurrent,
+                              'scale-90 opacity-70': index !== propertyCurrent,
+                            }
                           )}
                         >
-                          <div
-                            className={cn("h-full transition-transform duration-500", {
-                              "scale-105 z-10": index === propertyCurrent,
-                              "scale-90 opacity-70": index !== propertyCurrent,
-                            })}
-                          >
-                            <PropertyCard property={property} />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-4" />
-                    <CarouselNext className="right-4" />
-                  </Carousel>
-                ) : (
-                  <p>No properties match your current filters. Try broadening your search.</p>
-                )}
-            </main>
+                          <PropertyCard property={property} />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-[-1rem] md:left-[-2rem]" />
+                  <CarouselNext className="right-[-1rem] md:right-[-2rem]" />
+                </Carousel>
+              ) : (
+                <p className="text-center">
+                  No properties match your current filters. Try broadening your
+                  search.
+                </p>
+              )}
             </div>
         </div>
       </section>
@@ -231,7 +231,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="overflow-x-hidden w-full bg-background text-foreground">
+      <section className="overflow-x-hidden">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="text-center mb-12">
             <h2 className="text-4xl font-headline text-primary">

@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
+import { Card, CardContent } from "../ui/card";
 
 type Filters = {
   search: string;
@@ -39,70 +40,74 @@ export function PropertyFilters({ filters, setFilters }: PropertyFiltersProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <Label htmlFor="search">Search by Location or Title</Label>
-        <Input
-          id="search"
-          name="search"
-          placeholder="e.g. 'Malibu' or 'Villa'"
-          value={filters.search}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="space-y-2">
-        <Label>Property Type</Label>
-        <Select
-          name="type"
-          value={filters.type}
-          onValueChange={handleSelectChange("type")}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="All Types" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Types</SelectItem>
-            <SelectItem value="House">House</SelectItem>
-            <SelectItem value="Apartment">Apartment</SelectItem>
-            <SelectItem value="Condo">Condo</SelectItem>
-            <SelectItem value="Villa">Villa</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label>Price Range</Label>
-        <div className="flex justify-between text-sm text-muted-foreground">
-          <span>${filters.minPrice.toLocaleString()}</span>
-          <span>${filters.maxPrice.toLocaleString()}</span>
+    <Card>
+      <CardContent className="p-4 pt-6 md:p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+          <div className="space-y-2 md:col-span-2 lg:col-span-2">
+            <Label htmlFor="search">Search by Location or Title</Label>
+            <Input
+              id="search"
+              name="search"
+              placeholder="e.g. 'Malibu' or 'Villa'"
+              value={filters.search}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>Property Type</Label>
+            <Select
+              name="type"
+              value={filters.type}
+              onValueChange={handleSelectChange("type")}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All Types" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="House">House</SelectItem>
+                <SelectItem value="Apartment">Apartment</SelectItem>
+                <SelectItem value="Condo">Condo</SelectItem>
+                <SelectItem value="Villa">Villa</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Minimum Bedrooms</Label>
+            <Select
+              name="bedrooms"
+              value={filters.bedrooms}
+              onValueChange={handleSelectChange("bedrooms")}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Any</SelectItem>
+                <SelectItem value="1">1+</SelectItem>
+                <SelectItem value="2">2+</SelectItem>
+                <SelectItem value="3">3+</SelectItem>
+                <SelectItem value="4">4+</SelectItem>
+                <SelectItem value="5">5+</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2 md:col-span-2 lg:col-span-4">
+            <Label>Price Range</Label>
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>${filters.minPrice.toLocaleString()}</span>
+              <span>${filters.maxPrice.toLocaleString()}</span>
+            </div>
+            <Slider
+              min={0}
+              max={5000000}
+              step={10000}
+              value={[filters.minPrice, filters.maxPrice]}
+              onValueChange={handlePriceChange}
+            />
+          </div>
         </div>
-        <Slider
-          min={0}
-          max={5000000}
-          step={10000}
-          value={[filters.minPrice, filters.maxPrice]}
-          onValueChange={handlePriceChange}
-        />
-      </div>
-      <div className="space-y-2">
-        <Label>Minimum Bedrooms</Label>
-        <Select
-          name="bedrooms"
-          value={filters.bedrooms}
-          onValueChange={handleSelectChange("bedrooms")}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Any" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Any</SelectItem>
-            <SelectItem value="1">1+</SelectItem>
-            <SelectItem value="2">2+</SelectItem>
-            <SelectItem value="3">3+</SelectItem>
-            <SelectItem value="4">4+</SelectItem>
-            <SelectItem value="5">5+</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
