@@ -17,6 +17,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
@@ -195,6 +197,8 @@ export default function HomePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
                   </Carousel>
                 ) : (
                   <p>No properties match your current filters. Try broadening your search.</p>
