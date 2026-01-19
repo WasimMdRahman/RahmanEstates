@@ -174,4 +174,25 @@ export const testimonials: Testimonial[] = [
     location: "Denver, CO",
     image: getImage("testimonial-5"),
   },
+  {
+    id: "testimonial-6",
+    quote: "The best real estate company I've ever dealt with. Very professional, experienced and helpful agents and brokers.",
+    name: "Alex Ramirez",
+    location: "Portland, OR",
+    image: getImage("testimonial-6"),
+  },
+  {
+    id: "testimonial-7",
+    quote: "Our agent was fantastic! She was so patient and helpful, and she found us the perfect house. We couldn't be happier.",
+    name: "Jessica Liu",
+    location: "Denver, CO",
+    image: getImage("testimonial-7"),
+  },
+  {
+    id: "testimonial-8",
+    quote: "I highly recommend Rahman Estates. Their team is knowledgeable, and they made our home buying experience a positive one.",
+    name: "Tom Wilson",
+    location: "Seattle, WA",
+    image: getImage("testimonial-8"),
+  },
 ];
