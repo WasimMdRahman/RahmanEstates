@@ -171,7 +171,7 @@ export default function HomePage() {
                   setApi={setPropertyCarouselApi}
                   opts={{
                     loop: true,
-                    align: 'start',
+                    align: 'center',
                   }}
                   className="w-full"
                 >
@@ -185,7 +185,7 @@ export default function HomePage() {
                           className={cn(
                             'h-full transition-transform duration-500',
                             {
-                              'scale-95': index === propertyCurrent,
+                              'scale-105': index === propertyCurrent,
                               'scale-90 opacity-70': index !== propertyCurrent,
                             }
                           )}
