@@ -158,8 +158,8 @@ export default function HomePage() {
       </section>
       
       {/* Properties Section */}
-      <section id="properties" className="scroll-mt-20">
-        <div className="container mx-auto px-4">
+      <section id="properties" className="scroll-mt-20 w-full bg-background text-foreground">
+        <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <aside className="lg:col-span-1">
                 <div className="sticky top-24">
@@ -197,8 +197,8 @@ export default function HomePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="left-4" />
+                    <CarouselNext className="right-4" />
                   </Carousel>
                 ) : (
                   <p>No properties match your current filters. Try broadening your search.</p>
@@ -231,7 +231,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="overflow-x-hidden">
+      <section className="overflow-x-hidden w-full bg-background text-foreground">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="text-center mb-12">
             <h2 className="text-4xl font-headline text-primary">
