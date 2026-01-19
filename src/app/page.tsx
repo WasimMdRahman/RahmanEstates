@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { agents, properties as allProperties, testimonials } from "@/lib/data";
+import { agents, properties as allProperties } from "@/lib/data";
 import type { Property } from "@/lib/types";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertyFilters } from "@/components/properties/property-filters";
@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { AgentCard } from "@/components/agents/agent-card";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
-import { TestimonialCard } from "@/components/testimonials/testimonial-card";
 import { ContactForm } from "@/components/contact/contact-form";
 import {
   Carousel,
@@ -21,7 +20,6 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -59,33 +57,9 @@ export default function HomePage() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'property-1-1');
   const aboutImage = PlaceHolderImages.find(img => img.id === 'property-4-1');
 
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
-
-  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
   const [propertyCarouselApi, setPropertyCarouselApi] = useState<CarouselApi>();
   const [propertyCurrent, setPropertyCurrent] = useState(0);
 
-
-  useEffect(() => {
-    if (!carouselApi) {
-      return;
-    }
-
-    setCurrent(carouselApi.selectedScrollSnap());
-
-    const onSelect = () => {
-      setCurrent(carouselApi.selectedScrollSnap());
-    };
-
-    carouselApi.on("select", onSelect);
-
-    return () => {
-      carouselApi.off("select", onSelect);
-    };
-  }, [carouselApi]);
   
   useEffect(() => {
     if (!propertyCarouselApi) {
@@ -227,52 +201,6 @@ export default function HomePage() {
                     </Link>
                 </Button>
             </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="overflow-x-hidden">
-        <div className="container mx-auto px-4 py-12 md:py-24">
-            <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline text-primary">
-                What Our Clients Say
-            </h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                Real stories from satisfied homeowners who found their dream
-                properties with us.
-            </p>
-            </div>
-            <Carousel
-            setApi={setCarouselApi}
-            plugins={[autoplayPlugin.current]}
-            opts={{
-                loop: true,
-                align: "center",
-            }}
-            className="w-full max-w-6xl mx-auto"
-            >
-            <CarouselContent className="-ml-4">
-                {testimonials.map((testimonial, index) => (
-                <CarouselItem
-                    key={testimonial.id}
-                    className={cn(
-                    "pl-4 md:basis-1/2 lg:basis-1/3 transition-all duration-500 ease-in-out"
-                    )}
-                >
-                    <div
-                    className={cn("h-full transition-transform duration-500", {
-                        "scale-105": index === current,
-                        "scale-90 opacity-70": index !== current,
-                    })}
-                    >
-                    <TestimonialCard testimonial={testimonial} />
-                    </div>
-                </CarouselItem>
-                ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-[-1rem] md:left-[-2rem]" />
-            <CarouselNext className="right-[-1rem] md:right-[-2rem]" />
-            </Carousel>
         </div>
       </section>
 

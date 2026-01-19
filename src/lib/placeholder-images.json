@@ -59,54 +59,6 @@
       "description": "Portrait of agent Emily White",
       "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njg3NzQ4OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
-    },
-    {
-      "id": "testimonial-1",
-      "description": "Portrait of a happy client",
-      "imageUrl": "https://images.unsplash.com/photo-1557862921-37829c790f19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYW4lMjBzbWlsaW5nfGVufDB8fHx8MTc2ODg3OTU4OXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man smiling"
-    },
-    {
-      "id": "testimonial-2",
-      "description": "Portrait of another happy client",
-      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzY4ODc5NjE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "woman smiling"
-    },
-    {
-      "id": "testimonial-3",
-      "description": "Portrait of a couple",
-      "imageUrl": "https://images.unsplash.com/photo-1572536294332-a725c46955a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3VwbGUlMjBzbWlsaW5nfGVufDB8fHx8MTc2ODg3OTY0NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "couple smiling"
-    },
-    {
-      "id": "testimonial-4",
-      "description": "Portrait of a smiling couple",
-      "imageUrl": "https://images.unsplash.com/photo-1543180292-6d1a1b32d1f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzbWlsaW5nJTIwY291cGxlfGVufDB8fHx8MTc2ODg4MDAyNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "smiling couple"
-    },
-    {
-      "id": "testimonial-5",
-      "description": "Portrait of a man outdoors",
-      "imageUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8bWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzY4ODgwMDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man portrait"
-    },
-    {
-      "id": "testimonial-6",
-      "description": "Portrait of a happy man",
-      "imageUrl": "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2ODg4MDIwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person smiling"
-    },
-    {
-      "id": "testimonial-7",
-      "description": "Portrait of a woman laughing",
-      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2ODg4MDIwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "woman laughing"
-    },
-    {
-      "id": "testimonial-8",
-      "description": "Portrait of a smiling man",
-      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYW4lMjBzbWlsaW5nfGVufDB8fHx8MTc2ODg4MDIwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man smiling"
     }
   ]
 }
