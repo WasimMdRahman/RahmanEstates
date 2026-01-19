@@ -27,9 +27,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
           <Image
             src={property.images[0]}
             alt={property.title}
-            width={400}
-            height={250}
-            className="w-full h-48 object-cover"
+            width={600}
+            height={400}
+            className="w-full h-64 object-cover"
             data-ai-hint="house exterior"
           />
           <Badge

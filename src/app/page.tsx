@@ -63,6 +63,9 @@ export default function HomePage() {
 
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [propertyCarouselApi, setPropertyCarouselApi] = useState<CarouselApi>();
+  const [propertyCurrent, setPropertyCurrent] = useState(0);
+
 
   useEffect(() => {
     if (!carouselApi) {
@@ -81,6 +84,21 @@ export default function HomePage() {
       carouselApi.off("select", onSelect);
     };
   }, [carouselApi]);
+  
+  useEffect(() => {
+    if (!propertyCarouselApi) {
+      return;
+    }
+    setPropertyCurrent(propertyCarouselApi.selectedScrollSnap());
+    const onSelect = () => {
+      setPropertyCurrent(propertyCarouselApi.selectedScrollSnap());
+    };
+    propertyCarouselApi.on("select", onSelect);
+    return () => {
+      propertyCarouselApi.off("select", onSelect);
+    };
+  }, [propertyCarouselApi]);
+
 
   return (
     <div className="space-y-24">
@@ -108,7 +126,7 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className="bg-primary text-primary-foreground">
+      <section className="w-full bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
@@ -119,7 +137,7 @@ export default function HomePage() {
                 <p className="text-primary-foreground/80 leading-relaxed">
                 Whether you are buying your first home, seeking a luxury waterfront villa, or investing in commercial properties, we have the expertise and resources to guide you every step of the way. At Rahman Estates, we don't just sell properties; we build lifelong relationships.
                 </p>
-                <Button asChild variant="outline" className="border-primary-foreground/50 hover:bg-primary-foreground hover:text-primary">
+                <Button asChild variant="secondary" >
                 <Link href="/agents">Meet Our Team</Link>
                 </Button>
             </div>
@@ -150,16 +168,36 @@ export default function HomePage() {
             <main className="lg:col-span-3">
                 <h2 className="text-4xl font-headline mb-6">Our Properties</h2>
                 {filteredProperties.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {filteredProperties.map((property) => (
-                    <PropertyCard
-                        key={property.id}
-                        property={property}
-                    />
-                    ))}
-                </div>
+                  <Carousel
+                    setApi={setPropertyCarouselApi}
+                    opts={{
+                      loop: true,
+                      align: "center",
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent className="-ml-4">
+                      {filteredProperties.map((property, index) => (
+                        <CarouselItem
+                          key={property.id}
+                          className={cn(
+                            "pl-4 md:basis-1/2 lg:basis-1/3"
+                          )}
+                        >
+                          <div
+                            className={cn("h-full transition-transform duration-500", {
+                              "scale-105 z-10": index === propertyCurrent,
+                              "scale-90 opacity-70": index !== propertyCurrent,
+                            })}
+                          >
+                            <PropertyCard property={property} />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
                 ) : (
-                <p>No properties match your current filters. Try broadening your search.</p>
+                  <p>No properties match your current filters. Try broadening your search.</p>
                 )}
             </main>
             </div>
@@ -167,7 +205,7 @@ export default function HomePage() {
       </section>
       
       {/* Agents Section */}
-      <section className="bg-primary text-primary-foreground">
+      <section className="w-full bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="text-center mb-12">
                 <h2 className="text-4xl font-headline text-accent">Meet Our Expert Agents</h2>
@@ -190,7 +228,7 @@ export default function HomePage() {
 
       {/* Testimonials Section */}
       <section className="overflow-x-hidden">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="text-center mb-12">
             <h2 className="text-4xl font-headline text-primary">
                 What Our Clients Say
@@ -233,7 +271,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="bg-primary text-primary-foreground">
+      <section className="w-full bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 <div className="space-y-6">
