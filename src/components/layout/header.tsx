@@ -14,7 +14,6 @@ const navLinks = [
   { href: "/map", label: "Map" },
   { href: "/favorites", label: "Favorites" },
   { href: "/agents", label: "Agents" },
-  { href: "/admin/generate-description", label: "AI Tool" },
 ];
 
 export function Header() {
