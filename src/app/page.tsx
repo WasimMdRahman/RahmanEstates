@@ -10,7 +10,6 @@ import { PropertyFilters } from "@/components/properties/property-filters";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { AgentCard } from "@/components/agents/agent-card";
-import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 import { TestimonialCard } from "@/components/testimonials/testimonial-card";
 import { ContactForm } from "@/components/contact/contact-form";
@@ -86,7 +85,7 @@ export default function HomePage() {
   return (
     <div className="space-y-24">
       {/* Welcome Section */}
-      <section className="relative h-[60vh] rounded-lg overflow-hidden -mt-8">
+      <section className="relative h-[60vh] overflow-hidden">
         <Image
           src={heroImage?.imageUrl || "/placeholder.jpg"}
           alt={heroImage?.description || "Luxury house"}
@@ -109,164 +108,166 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4">
-            <h2 className="text-4xl font-headline text-accent">About Rahman Estates</h2>
-            <p className="text-primary-foreground/80 leading-relaxed">
-              Welcome to Rahman Estates, where we turn your real estate dreams into reality. Founded on the principles of integrity, transparency, and unparalleled service, we have been a trusted name in the property market for over two decades. Our dedicated team of experts is committed to providing a seamless and personalized experience for every client.
-            </p>
-            <p className="text-primary-foreground/80 leading-relaxed">
-              Whether you are buying your first home, seeking a luxury waterfront villa, or investing in commercial properties, we have the expertise and resources to guide you every step of the way. At Rahman Estates, we don't just sell properties; we build lifelong relationships.
-            </p>
-            <Button asChild variant="outline" className="border-primary-foreground/50 hover:bg-primary-foreground hover:text-primary">
-              <Link href="/agents">Meet Our Team</Link>
-            </Button>
-          </div>
-          <div className="rounded-lg overflow-hidden shadow-lg">
-             <Image
-              src={aboutImage?.imageUrl || "/placeholder.jpg"}
-              alt={aboutImage?.description || "Luxury condo"}
-              width={600}
-              height={400}
-              className="w-full h-auto object-cover"
-              data-ai-hint={aboutImage?.imageHint || "luxury condo"}
-            />
-          </div>
+      <section className="bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 py-12 md:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+                <h2 className="text-4xl font-headline text-accent">About Rahman Estates</h2>
+                <p className="text-primary-foreground/80 leading-relaxed">
+                Welcome to Rahman Estates, where we turn your real estate dreams into reality. Founded on the principles of integrity, transparency, and unparalleled service, we have been a trusted name in the property market for over two decades. Our dedicated team of experts is committed to providing a seamless and personalized experience for every client.
+                </p>
+                <p className="text-primary-foreground/80 leading-relaxed">
+                Whether you are buying your first home, seeking a luxury waterfront villa, or investing in commercial properties, we have the expertise and resources to guide you every step of the way. At Rahman Estates, we don't just sell properties; we build lifelong relationships.
+                </p>
+                <Button asChild variant="outline" className="border-primary-foreground/50 hover:bg-primary-foreground hover:text-primary">
+                <Link href="/agents">Meet Our Team</Link>
+                </Button>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-lg">
+                <Image
+                src={aboutImage?.imageUrl || "/placeholder.jpg"}
+                alt={aboutImage?.description || "Luxury condo"}
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+                data-ai-hint={aboutImage?.imageHint || "luxury condo"}
+                />
+            </div>
+            </div>
         </div>
       </section>
       
-      <Separator />
-
       {/* Properties Section */}
       <section id="properties" className="scroll-mt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <aside className="lg:col-span-1">
-            <div className="sticky top-24">
-              <h2 className="text-3xl font-headline mb-4">Filter Properties</h2>
-              <PropertyFilters filters={filters} setFilters={setFilters} />
+        <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside className="lg:col-span-1">
+                <div className="sticky top-24">
+                <h2 className="text-3xl font-headline mb-4">Filter Properties</h2>
+                <PropertyFilters filters={filters} setFilters={setFilters} />
+                </div>
+            </aside>
+            <main className="lg:col-span-3">
+                <h2 className="text-4xl font-headline mb-6">Our Properties</h2>
+                {filteredProperties.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {filteredProperties.map((property) => (
+                    <PropertyCard
+                        key={property.id}
+                        property={property}
+                    />
+                    ))}
+                </div>
+                ) : (
+                <p>No properties match your current filters. Try broadening your search.</p>
+                )}
+            </main>
             </div>
-          </aside>
-          <main className="lg:col-span-3">
-            <h2 className="text-4xl font-headline mb-6">Our Properties</h2>
-            {filteredProperties.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredProperties.map((property) => (
-                  <PropertyCard
-                    key={property.id}
-                    property={property}
-                  />
-                ))}
-              </div>
-            ) : (
-              <p>No properties match your current filters. Try broadening your search.</p>
-            )}
-          </main>
         </div>
       </section>
-
-      <Separator />
       
       {/* Agents Section */}
-      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
-        <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline text-accent">Meet Our Expert Agents</h2>
-            <p className="text-primary-foreground/80 mt-2 max-w-2xl mx-auto">Our team of experienced and dedicated real estate agents is here to help you find your perfect property.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {agents.slice(0, 3).map((agent) => (
-              <AgentCard key={agent.id} agent={agent} />
-            ))}
-        </div>
-        <div className="text-center mt-12">
-            <Button asChild size="lg" variant="secondary">
-                <Link href="/agents">
-                    View All Agents <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-            </Button>
+      <section className="bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 py-12 md:py-24">
+            <div className="text-center mb-12">
+                <h2 className="text-4xl font-headline text-accent">Meet Our Expert Agents</h2>
+                <p className="text-primary-foreground/80 mt-2 max-w-2xl mx-auto">Our team of experienced and dedicated real estate agents is here to help you find your perfect property.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {agents.slice(0, 3).map((agent) => (
+                <AgentCard key={agent.id} agent={agent} />
+                ))}
+            </div>
+            <div className="text-center mt-12">
+                <Button asChild size="lg" variant="secondary">
+                    <Link href="/agents">
+                        View All Agents <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                </Button>
+            </div>
         </div>
       </section>
-
-      <Separator />
 
       {/* Testimonials Section */}
       <section className="overflow-x-hidden">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-headline text-primary">
-            What Our Clients Say
-          </h2>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Real stories from satisfied homeowners who found their dream
-            properties with us.
-          </p>
-        </div>
-        <Carousel
-          setApi={setCarouselApi}
-          plugins={[autoplayPlugin.current]}
-          opts={{
-            loop: true,
-            align: "center",
-          }}
-          className="w-full max-w-6xl mx-auto"
-        >
-          <CarouselContent className="-ml-4">
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem
-                key={testimonial.id}
-                className={cn(
-                  "pl-4 md:basis-1/2 lg:basis-1/3 transition-all duration-500 ease-in-out"
-                )}
-              >
-                <div
-                  className={cn("h-full transition-transform duration-500", {
-                    "scale-105": index === current,
-                    "scale-90 opacity-70": index !== current,
-                  })}
+        <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+            <h2 className="text-4xl font-headline text-primary">
+                What Our Clients Say
+            </h2>
+            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+                Real stories from satisfied homeowners who found their dream
+                properties with us.
+            </p>
+            </div>
+            <Carousel
+            setApi={setCarouselApi}
+            plugins={[autoplayPlugin.current]}
+            opts={{
+                loop: true,
+                align: "center",
+            }}
+            className="w-full max-w-6xl mx-auto"
+            >
+            <CarouselContent className="-ml-4">
+                {testimonials.map((testimonial, index) => (
+                <CarouselItem
+                    key={testimonial.id}
+                    className={cn(
+                    "pl-4 md:basis-1/2 lg:basis-1/3 transition-all duration-500 ease-in-out"
+                    )}
                 >
-                  <TestimonialCard testimonial={testimonial} />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                    <div
+                    className={cn("h-full transition-transform duration-500", {
+                        "scale-105": index === current,
+                        "scale-90 opacity-70": index !== current,
+                    })}
+                    >
+                    <TestimonialCard testimonial={testimonial} />
+                    </div>
+                </CarouselItem>
+                ))}
+            </CarouselContent>
+            </Carousel>
+        </div>
       </section>
 
-      <Separator />
-
       {/* Contact Us Section */}
-      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6">
-                <h2 className="text-4xl font-headline text-accent">Get In Touch</h2>
-                <p className="text-primary-foreground/80 leading-relaxed">
-                    Have a question or ready to start your real estate journey? Our team is here to help. Contact us today, and let's turn your property goals into reality.
-                </p>
-                <div className="space-y-4">
-                     <div className="flex items-start gap-4">
-                        <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
-                        <div>
-                            <h3 className="font-semibold">Our Office</h3>
-                            <p className="text-primary-foreground/80">123 Real Estate Ave, Suite 100<br/>Beverly Hills, CA 90210</p>
+      <section className="bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 py-12 md:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <div className="space-y-6">
+                    <h2 className="text-4xl font-headline text-accent">Get In Touch</h2>
+                    <p className="text-primary-foreground/80 leading-relaxed">
+                        Have a question or ready to start your real estate journey? Our team is here to help. Contact us today, and let's turn your property goals into reality.
+                    </p>
+                    <div className="space-y-4">
+                        <div className="flex items-start gap-4">
+                            <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                            <div>
+                                <h3 className="font-semibold">Our Office</h3>
+                                <p className="text-primary-foreground/80">123 Real Estate Ave, Suite 100<br/>Beverly Hills, CA 90210</p>
+                            </div>
                         </div>
-                    </div>
-                     <div className="flex items-start gap-4">
-                        <Mail className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
-                        <div>
-                            <h3 className="font-semibold">Email Us</h3>
-                            <a href="mailto:contact@rahmanestates.com" className="text-primary-foreground/80 hover:text-accent">contact@rahmanestates.com</a>
+                        <div className="flex items-start gap-4">
+                            <Mail className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                            <div>
+                                <h3 className="font-semibold">Email Us</h3>
+                                <a href="mailto:contact@rahmanestates.com" className="text-primary-foreground/80 hover:text-accent">contact@rahmanestates.com</a>
+                            </div>
                         </div>
-                    </div>
-                     <div className="flex items-start gap-4">
-                        <Phone className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
-                        <div>
-                            <h3 className="font-semibold">Call Us</h3>
-                            <a href="tel:+1-800-555-1234" className="text-primary-foreground/80 hover:text-accent">+1 (800) 555-1234</a>
+                        <div className="flex items-start gap-4">
+                            <Phone className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                            <div>
+                                <h3 className="font-semibold">Call Us</h3>
+                                <a href="tel:+1-800-555-1234" className="text-primary-foreground/80 hover:text-accent">+1 (800) 555-1234</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <ContactForm />
+                <div>
+                    <ContactForm />
+                </div>
             </div>
         </div>
       </section>

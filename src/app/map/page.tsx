@@ -5,7 +5,7 @@ export default function MapPage() {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-headline mb-4">Explore Properties on Map</h1>
       <p className="text-muted-foreground mb-6">Click on a marker to see property details and get a bird's-eye view of your next home.</p>
       <div className="h-[70vh] w-full rounded-lg overflow-hidden shadow-lg border">

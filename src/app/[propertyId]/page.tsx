@@ -41,7 +41,7 @@ export default function PropertyDetailsPage({
   const agent = agents.find((a) => a.id === property.agentId);
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">
           {property.title}

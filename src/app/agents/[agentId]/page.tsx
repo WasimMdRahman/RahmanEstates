@@ -21,7 +21,7 @@ export default function AgentProfilePage({
   const agentProperties = properties.filter((p) => p.agentId === agent.id);
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <Card className="overflow-hidden mb-12">
         <div className="grid grid-cols-1 md:grid-cols-3">
           <div className="md:col-span-1">
