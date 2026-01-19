@@ -160,4 +160,18 @@ export const testimonials: Testimonial[] = [
     location: "New York, NY",
     image: getImage("testimonial-3"),
   },
+  {
+    id: "testimonial-4",
+    quote: "Rahman Estates made our international move so much easier. Their knowledge of the Miami market is unparalleled.",
+    name: "Hans & Gretel",
+    location: "Miami, FL",
+    image: getImage("testimonial-4"),
+  },
+  {
+    id: "testimonial-5",
+    quote: "Selling our home was a breeze with John. He was professional, efficient, and got us a fantastic price.",
+    name: "Peter Jones",
+    location: "Denver, CO",
+    image: getImage("testimonial-5"),
+  },
 ];

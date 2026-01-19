@@ -270,6 +270,8 @@ export default function HomePage() {
                 </CarouselItem>
                 ))}
             </CarouselContent>
+            <CarouselPrevious className="left-[-1rem] md:left-[-2rem]" />
+            <CarouselNext className="right-[-1rem] md:right-[-2rem]" />
             </Carousel>
         </div>
       </section>
