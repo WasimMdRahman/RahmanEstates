@@ -109,17 +109,17 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section>
+      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-4">
-            <h2 className="text-4xl font-headline text-primary">About Rahman Estates</h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <h2 className="text-4xl font-headline text-accent">About Rahman Estates</h2>
+            <p className="text-primary-foreground/80 leading-relaxed">
               Welcome to Rahman Estates, where we turn your real estate dreams into reality. Founded on the principles of integrity, transparency, and unparalleled service, we have been a trusted name in the property market for over two decades. Our dedicated team of experts is committed to providing a seamless and personalized experience for every client.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-primary-foreground/80 leading-relaxed">
               Whether you are buying your first home, seeking a luxury waterfront villa, or investing in commercial properties, we have the expertise and resources to guide you every step of the way. At Rahman Estates, we don't just sell properties; we build lifelong relationships.
             </p>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="border-primary-foreground/50 hover:bg-primary-foreground hover:text-primary">
               <Link href="/agents">Meet Our Team</Link>
             </Button>
           </div>
@@ -168,10 +168,10 @@ export default function HomePage() {
       <Separator />
       
       {/* Agents Section */}
-      <section>
+      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
         <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline text-primary">Meet Our Expert Agents</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Our team of experienced and dedicated real estate agents is here to help you find your perfect property.</p>
+            <h2 className="text-4xl font-headline text-accent">Meet Our Expert Agents</h2>
+            <p className="text-primary-foreground/80 mt-2 max-w-2xl mx-auto">Our team of experienced and dedicated real estate agents is here to help you find your perfect property.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {agents.slice(0, 3).map((agent) => (
@@ -179,7 +179,7 @@ export default function HomePage() {
             ))}
         </div>
         <div className="text-center mt-12">
-            <Button asChild size="lg">
+            <Button asChild size="lg" variant="secondary">
                 <Link href="/agents">
                     View All Agents <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -234,11 +234,11 @@ export default function HomePage() {
       <Separator />
 
       {/* Contact Us Section */}
-      <section>
+      <section className="bg-primary text-primary-foreground rounded-lg p-8 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
-                <h2 className="text-4xl font-headline text-primary">Get In Touch</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-4xl font-headline text-accent">Get In Touch</h2>
+                <p className="text-primary-foreground/80 leading-relaxed">
                     Have a question or ready to start your real estate journey? Our team is here to help. Contact us today, and let's turn your property goals into reality.
                 </p>
                 <div className="space-y-4">
@@ -246,21 +246,21 @@ export default function HomePage() {
                         <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                         <div>
                             <h3 className="font-semibold">Our Office</h3>
-                            <p className="text-muted-foreground">123 Real Estate Ave, Suite 100<br/>Beverly Hills, CA 90210</p>
+                            <p className="text-primary-foreground/80">123 Real Estate Ave, Suite 100<br/>Beverly Hills, CA 90210</p>
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
                         <Mail className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                         <div>
                             <h3 className="font-semibold">Email Us</h3>
-                            <a href="mailto:contact@rahmanestates.com" className="text-muted-foreground hover:text-primary">contact@rahmanestates.com</a>
+                            <a href="mailto:contact@rahmanestates.com" className="text-primary-foreground/80 hover:text-accent">contact@rahmanestates.com</a>
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
                         <Phone className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                         <div>
                             <h3 className="font-semibold">Call Us</h3>
-                            <a href="tel:+1-800-555-1234" className="text-muted-foreground hover:text-primary">+1 (800) 555-1234</a>
+                            <a href="tel:+1-800-555-1234" className="text-primary-foreground/80 hover:text-accent">+1 (800) 555-1234</a>
                         </div>
                     </div>
                 </div>
