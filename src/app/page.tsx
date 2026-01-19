@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { agents, properties as allProperties } from "@/lib/data";
+import { agents, properties as allProperties, testimonials } from "@/lib/data";
 import type { Property } from "@/lib/types";
 import { PropertyCard } from "@/components/properties/property-card";
 import { PropertyFilters } from "@/components/properties/property-filters";
@@ -11,7 +11,9 @@ import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { AgentCard } from "@/components/agents/agent-card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { TestimonialCard } from "@/components/testimonials/testimonial-card";
+import { ContactForm } from "@/components/contact/contact-form";
 
 export default function HomePage() {
   const [filters, setFilters] = useState({
@@ -149,6 +151,61 @@ export default function HomePage() {
                     View All Agents <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
             </Button>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Testimonials Section */}
+      <section>
+        <div className="text-center mb-12">
+            <h2 className="text-4xl font-headline text-primary">What Our Clients Say</h2>
+            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Real stories from satisfied homeowners who found their dream properties with us.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Contact Us Section */}
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div className="space-y-6">
+                <h2 className="text-4xl font-headline text-primary">Get In Touch</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                    Have a question or ready to start your real estate journey? Our team is here to help. Contact us today, and let's turn your property goals into reality.
+                </p>
+                <div className="space-y-4">
+                     <div className="flex items-start gap-4">
+                        <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h3 className="font-semibold">Our Office</h3>
+                            <p className="text-muted-foreground">123 Real Estate Ave, Suite 100<br/>Beverly Hills, CA 90210</p>
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <Mail className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h3 className="font-semibold">Email Us</h3>
+                            <a href="mailto:contact@rahmanestates.com" className="text-muted-foreground hover:text-primary">contact@rahmanestates.com</a>
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <Phone className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
+                        <div>
+                            <h3 className="font-semibold">Call Us</h3>
+                            <a href="tel:+1-800-555-1234" className="text-muted-foreground hover:text-primary">+1 (800) 555-1234</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ContactForm />
+            </div>
         </div>
       </section>
     </div>
