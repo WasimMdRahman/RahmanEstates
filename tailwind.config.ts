@@ -96,8 +96,10 @@ export default {
           },
         },
         typing: {
-          from: { width: '0' },
-          to: { width: '100%' },
+          '0%': { width: '0' },
+          '40%': { width: '100%' },
+          '60%': { width: '100%' },
+          '100%': { width: '0' },
         },
         'blink-caret': {
           'from, to': { borderColor: 'transparent' },
@@ -107,7 +109,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        typewriter: 'typing 2s steps(20, end), blink-caret .75s step-end infinite',
+        typewriter: 'typing 3.5s steps(20) infinite, blink-caret .75s step-end infinite',
       },
     },
   },
