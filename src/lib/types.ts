@@ -28,3 +28,10 @@ export interface Agent {
   bio: string;
   image: string;
 }
+
+export interface Testimonial {
+  name: string;
+  location: string;
+  quote: string;
+  image: string;
+}

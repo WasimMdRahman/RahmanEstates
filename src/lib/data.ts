@@ -1,4 +1,4 @@
-import type { Agent, Property } from "./types";
+import type { Agent, Property, Testimonial } from "./types";
 import { PlaceHolderImages } from "./placeholder-images";
 
 const getImage = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -135,5 +135,56 @@ export const properties: Property[] = [
     images: [getImage("property-6-1")],
     agentId: "agent-2",
     coordinates: { lat: 39.757, lng: -105.007 },
+  },
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "Michael Scott",
+    location: "Malibu, CA",
+    quote: "Working with Rahman Estates was a dream. They found us the perfect home in less than a month. The process was seamless and professional.",
+    image: getImage("testimonial-1"),
+  },
+  {
+    name: "Sarah Johnson",
+    location: "Austin, TX",
+    quote: "As a first-time homebuyer, I was nervous, but my agent at Rahman Estates guided me through every step with patience and expertise. I couldn't be happier!",
+    image: getImage("testimonial-2"),
+  },
+  {
+    name: "David & Maria Chen",
+    location: "New York, NY",
+    quote: "They handled the sale of our property with incredible efficiency and got us a price that exceeded our expectations. Truly the best in the business.",
+    image: getImage("testimonial-3"),
+  },
+  {
+    name: "Hans & Gretel",
+    location: "Miami, FL",
+    quote: "Rahman Estates made our international move so much easier. Their knowledge of the Miami market is unparalleled.",
+    image: getImage("testimonial-4"),
+  },
+  {
+    name: "Peter Jones",
+    location: "Denver, CO",
+    quote: "Selling our home was a breeze with John. He was professional, efficient, and got us a fantastic price.",
+    image: getImage("testimonial-5"),
+  },
+  {
+    name: "Alex Ramirez",
+    location: "Portland, OR",
+    quote: "The best real estate company I've ever dealt with. Very professional, experienced and helpful agents and brokers.",
+    image: getImage("testimonial-6"),
+  },
+  {
+    name: "Jessica Liu",
+    location: "Denver, CO",
+    quote: "Our agent was fantastic! She was so patient and helpful, and she found us the perfect house. We couldn't be happier.",
+    image: getImage("testimonial-7"),
+  },
+  {
+    name: "Tom Wilson",
+    location: "Seattle, WA",
+    quote: "I highly recommend Rahman Estates. Their team is knowledgeable, and they made our home buying experience a positive one.",
+    image: getImage("testimonial-8"),
   },
 ];
