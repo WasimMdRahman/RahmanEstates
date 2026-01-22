@@ -95,10 +95,19 @@ export default {
             height: '0',
           },
         },
+        typing: {
+          from: { width: '0' },
+          to: { width: '100%' },
+        },
+        'blink-caret': {
+          'from, to': { borderColor: 'transparent' },
+          '50%': { borderColor: 'hsl(var(--accent))' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        typewriter: 'typing 2s steps(20, end), blink-caret .75s step-end infinite',
       },
     },
   },

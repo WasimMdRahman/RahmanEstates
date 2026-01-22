@@ -77,7 +77,7 @@ export default function HomePage() {
 
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-12 md:space-y-24">
       {/* Welcome Section */}
       <section className="relative h-[60vh] overflow-hidden">
         <Image
@@ -89,9 +89,11 @@ export default function HomePage() {
           data-ai-hint={heroImage?.imageHint || "house exterior"}
         />
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center text-white p-4">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold mb-4 drop-shadow-lg">
-            Find Your Dream Home
-          </h1>
+          <div className="w-max">
+            <h1 className="animate-typewriter overflow-hidden whitespace-nowrap border-r-4 border-r-accent text-4xl md:text-6xl font-headline font-bold mb-4 drop-shadow-lg">
+              Find Your Dream Home
+            </h1>
+          </div>
           <p className="text-lg md:text-xl max-w-2xl mb-8 drop-shadow">
             With Rahman Estates, the key to your new beginning is just a click away. Explore our exclusive listings and find the perfect place to call home.
           </p>
@@ -132,10 +134,9 @@ export default function HomePage() {
       </section>
       
       {/* Properties Section */}
-      <section id="properties" className="scroll-mt-20">
-        <div className="container mx-auto px-4 py-12 md:py-24">
-          <div>
-            <h2 className="text-3xl font-headline mb-4 text-center">Filter Properties</h2>
+      <section id="properties" className="scroll-mt-20 container mx-auto px-4 py-12 md:py-24">
+        <div className="text-center mb-12">
+            <h2 className="text-4xl font-headline mb-4">Filter Properties</h2>
             <PropertyFilters filters={filters} setFilters={setFilters} />
           </div>
           <div className="mt-12">
@@ -179,7 +180,6 @@ export default function HomePage() {
                 </p>
               )}
             </div>
-        </div>
       </section>
       
       {/* Agents Section */}
