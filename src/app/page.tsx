@@ -60,6 +60,36 @@ export default function HomePage() {
   const [propertyCarouselApi, setPropertyCarouselApi] = useState<CarouselApi>();
   const [propertyCurrent, setPropertyCurrent] = useState(0);
 
+  const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentSections = sectionsRef.current;
+    currentSections.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      currentSections.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
   
   useEffect(() => {
     if (!propertyCarouselApi) {
@@ -104,7 +134,7 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className="w-full bg-primary text-primary-foreground">
+      <section ref={(el) => (sectionsRef.current[0] = el)} className="w-full bg-primary text-primary-foreground section-fade-in">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
@@ -134,56 +164,58 @@ export default function HomePage() {
       </section>
       
       {/* Properties Section */}
-      <section id="properties" className="scroll-mt-20 container mx-auto px-4 py-12 md:py-24">
-        <div className="text-center mb-12">
-            <h2 className="text-4xl font-headline mb-4">Filter Properties</h2>
-            <PropertyFilters filters={filters} setFilters={setFilters} />
-          </div>
-          <div className="mt-12">
-              <h2 className="text-4xl font-headline mb-6 text-center">Our Properties</h2>
-              {filteredProperties.length > 0 ? (
-                <Carousel
-                  setApi={setPropertyCarouselApi}
-                  opts={{
-                    loop: true,
-                    align: 'center',
-                  }}
-                  className="w-full"
-                >
-                  <CarouselContent className="-ml-4">
-                    {filteredProperties.map((property, index) => (
-                      <CarouselItem
-                        key={property.id}
-                        className={cn('pl-4 md:basis-1/2 lg:basis-1/3')}
-                      >
-                        <div
-                          className={cn(
-                            'h-full transition-transform duration-500',
-                            {
-                              'scale-105': index === propertyCurrent,
-                              'scale-90 opacity-70': index !== propertyCurrent,
-                            }
-                          )}
-                        >
-                          <PropertyCard property={property} />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-[-1rem] md:left-[-2rem]" />
-                  <CarouselNext className="right-[-1rem] md:right-[-2rem]" />
-                </Carousel>
-              ) : (
-                <p className="text-center">
-                  No properties match your current filters. Try broadening your
-                  search.
-                </p>
-              )}
+      <section ref={(el) => (sectionsRef.current[1] = el)} id="properties" className="scroll-mt-20 w-full section-fade-in">
+        <div className="container mx-auto px-4 py-12 md:py-24">
+            <div className="text-center mb-12">
+                <h2 className="text-4xl font-headline mb-4">Filter Properties</h2>
+                <PropertyFilters filters={filters} setFilters={setFilters} />
             </div>
+            <div className="mt-12">
+                <h2 className="text-4xl font-headline mb-6 text-center">Our Properties</h2>
+                {filteredProperties.length > 0 ? (
+                    <Carousel
+                    setApi={setPropertyCarouselApi}
+                    opts={{
+                        loop: true,
+                        align: 'center',
+                    }}
+                    className="w-full"
+                    >
+                    <CarouselContent className="-ml-4">
+                        {filteredProperties.map((property, index) => (
+                        <CarouselItem
+                            key={property.id}
+                            className={cn('pl-4 md:basis-1/2 lg:basis-1/3')}
+                        >
+                            <div
+                            className={cn(
+                                'h-full transition-transform duration-500',
+                                {
+                                'scale-105': index === propertyCurrent,
+                                'scale-90 opacity-70': index !== propertyCurrent,
+                                }
+                            )}
+                            >
+                            <PropertyCard property={property} />
+                            </div>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-[-1rem] md:left-[-2rem]" />
+                    <CarouselNext className="right-[-1rem] md:right-[-2rem]" />
+                    </Carousel>
+                ) : (
+                    <p className="text-center">
+                    No properties match your current filters. Try broadening your
+                    search.
+                    </p>
+                )}
+                </div>
+        </div>
       </section>
       
       {/* Agents Section */}
-      <section className="w-full bg-primary text-primary-foreground">
+      <section ref={(el) => (sectionsRef.current[2] = el)} className="w-full bg-primary text-primary-foreground section-fade-in">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="text-center mb-12">
                 <h2 className="text-4xl font-headline text-accent">Meet Our Expert Agents</h2>
@@ -205,7 +237,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Us Section */}
-      <section className="w-full bg-primary text-primary-foreground">
+      <section ref={(el) => (sectionsRef.current[3] = el)} className="w-full bg-primary text-primary-foreground section-fade-in">
         <div className="container mx-auto px-4 py-12 md:py-24">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 <div className="space-y-6">
