@@ -127,7 +127,11 @@ export default function HomePage() {
           <p className="text-lg md:text-xl max-w-2xl mb-8 drop-shadow">
             With Rahman Estates, the key to your new beginning is just a click away. Explore our exclusive listings and find the perfect place to call home.
           </p>
-          <Button size="lg" asChild>
+          <Button
+            size="lg"
+            asChild
+            className="border bg-white/20 text-white backdrop-blur-lg border-white/30 hover:bg-white/30"
+          >
             <Link href="#properties">Browse Properties</Link>
           </Button>
         </div>
